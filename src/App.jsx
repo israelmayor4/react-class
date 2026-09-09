@@ -5,6 +5,7 @@
 // }
 
 import { Card } from "./Card"
+import  ToDo  from "./ToDo"
 import './App.css'
 import { useState } from "react"
 
@@ -20,7 +21,7 @@ export const App = () => {
   const age = 8
   const user = {
     name: "Tayo",
-    age: 10,
+    age: 41,
     country: "Canada",
     gender: "female",
     active: true
@@ -35,6 +36,16 @@ export const App = () => {
 
   const handleIncrement = () => {
     setCount(count + 1)
+    console.log(count);
+
+  }
+
+  const handleDecrement = () => {
+
+    if (count > 0) {
+      setCount(count - 1)
+    }
+    
     console.log(count);
 
   }
@@ -79,13 +90,38 @@ export const App = () => {
     }
   ]
 
+  const [email, setEmail] = useState("");
+  const [showEmail, setShowEmail] = useState('');
+  
+  const handleInputChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+
+
+  const handleShowEmail = () => {
+    setShowEmail(email);
+  
+  }
 
 
   return (
     <div>
+
+
+    <label htmlFor="">email
+      <input className="emailInput" onChange={handleInputChange} value= {email} type="email"/>
+      <button onClick={handleShowEmail}>Show</button>
+
+      <p>User email: {showEmail}</p>
+    </label>
+      
+
+
       <h1>count: {count}</h1>
       {/* <button onClick={() => setCount(count + 1)}>Increment</button> */}
       <button onClick={handleIncrement}>Increment</button>
+      <button onClick={handleDecrement}>Decrement</button>
       <h1>Hello world</h1>
       <p className="p">Here is a p tag</p>
       <p>{name}</p>
@@ -94,7 +130,9 @@ export const App = () => {
       <h1>{user.name} Profile</h1>
       <ul>
         <li>Name: {user.name}</li>
-        <li>Age: {user.age}, {user.name} is {user.age >= 18 ? "an adult" : "not an adult"}</li>
+        <li>Age: {user.age}, {user.name} is a {user.age < 18 ? "child" : user.age >= 18 && user.age <=40 ? "Adult": "Old man"}</li>
+
+
         <li>Country: {user.country}</li>
         <li>Gender: {user.gender}</li>
         <li>{user.name} is {user.active ? "active" : "not active"}</li>
@@ -113,6 +151,13 @@ export const App = () => {
 
 
       <Card />
+
+      
+        <main>
+        {/* 2. Place your new ToDo component wherever you want it to appear */}
+        <ToDo />
+      </main>
+  
 
 
 
