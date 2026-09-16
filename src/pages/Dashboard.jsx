@@ -4,7 +4,7 @@ import { Navbar } from "../Component/Navbar"
 
 export const Dashboard = () => {
     return (
-        <div>
+        <div style={{display: 'grid', gridTemplateColumns: '1fr 3fr', columnGap: "20px",}}>
             
             <Sidebar />
             <div>

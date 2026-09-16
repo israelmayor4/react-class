@@ -4,6 +4,7 @@ import { Card } from "../Card" // Adjust paths to go up one folder level
 import ToDo from "../ToDo"
 import { useNavigate } from "react-router-dom"
 import { Navbar } from "../Component/Navbar"
+import { Sidebar } from "../Component/Sidebar"
 
 export const Home = () => {
   const [count, setCount] = useState(0)
@@ -51,11 +52,10 @@ export const Home = () => {
 
   return (
     <div className="home">
-      {/* <div className="navBar">
+      
 
-      </div> */}
+      <Navbar style={{}} />
 
-      <Navbar />
 
       <div>
       <div style={{ marginTop: '20px', textAlign: 'center' }}>

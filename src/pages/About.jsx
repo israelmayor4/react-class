@@ -1,5 +1,11 @@
+import { Navbar } from "../Component/Navbar"
+
 export const About = () => {
     return (
-        <div>This is About Page</div>
+        
+
+        <div>
+            <Navbar />
+        </div>
     )
 }
