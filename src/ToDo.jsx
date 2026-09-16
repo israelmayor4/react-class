@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Button } from './Button';
 
 export default function ToDo() {
   const [tasks, setTasks] = useState([]);
@@ -7,13 +8,19 @@ export default function ToDo() {
 
   const addTask = (e) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
+
+    console.log("Add task triggered! Input value is:", inputValue); // Diagnostic Log 1
+
+    if (!inputValue.trim()) {
+      console.log("Exited early because input is empty or broken!"); // Diagnostic Log 2
+      return; // Exit early if input is empty or broken
+    }
 
     setTasks([...tasks, { id: tasks.length + 1, text: inputValue, completed: false }]);
     setInputValue(''); 
   };
 
-  console.log(tasks);
+
   
 
   
@@ -28,6 +35,10 @@ export default function ToDo() {
     ));
   };
 
+  useEffect(() => {
+  console.log("Current tasks:", tasks);
+}, [tasks]); 
+
   return (
     <div style={{ maxWidth: '400px', margin: '20px auto', padding: '20px', fontFamily: 'sans-serif' }}>
       <h2>My To-Do List</h2>
@@ -41,7 +52,8 @@ export default function ToDo() {
           onChange={(e) => setInputValue(e.target.value)}
           style={{ flex: 1, padding: '8px' }}
         />
-        <button type="submit" style={{ padding: '8px 12px', cursor: 'pointer' }}>Add</button>
+        <Button type='submit' bg='orange' text='Add To Do' />
+        {/* <button type="submit" style={{ padding: '8px 12px', cursor: 'pointer' }}>Add</button> */}
       </form>
 
      
@@ -69,12 +81,13 @@ export default function ToDo() {
               {task.completed ? '✅': '❌'}
               {task.text}
             </span>
-            <button 
+            <Button click={() => deleteTask(task.id)} bg='red' text='Delete'/>
+            {/* <button 
               onClick={() => deleteTask(task.id)}
               style={{ background: '#ff4d4d', color: 'white', border: 'none', padding: '5px 8px', cursor: 'pointer', borderRadius: '3px' }}
             >
               Delete
-            </button>
+            </button> */}
           </li>
         ))}
       </ul>
